@@ -29,23 +29,6 @@ class m220627_091141_user_anketa extends Migration
      */
     public function safeDown()
     {
-        echo "m220627_091141_user_anketa cannot be reverted.\n";
-
-        return false;
+        $this->dropTable('anketa');
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m220627_091141_user_anketa cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

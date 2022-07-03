@@ -1,38 +1,39 @@
 <?php
 
-/** @var yii\web\View $this */
+/** @var $this yii\web\View */
 /** @var yii\bootstrap4\ActiveForm $form */
 /** @var app\models\AnketaForm $model */
-
 use app\models\Anketa;
-use yii\bootstrap4\ActiveForm;
-use yii\bootstrap4\Html;
+use yii\grid\GridView;
+use yii\grid\ActionColumn;
+use yii\helpers\Html;
+use yii\helpers\URL;
 
-$model = new Anketa;
-$this->title = 'Anketa';
+$this->title = 'Анкеты';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-anketa">
+<div class="anketa-index">
     <h1><?= Html::encode($this->title) ?></h1>
-        <div class="row">
-            <div class="col-lg-5">
+        <p><?= Html::a('Создание анкеты',['create'],['class'=>'btn btn-success'])?></p>
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'columns' =>[
+                ['class' => 'yii\grid\SerialColumn'],
+                'name',
+                'surname',
+                'password',
+                'phone',
+                'email',
+                'created_at',
+                'updated_at',
+                [
+                    'class' => ActionColumn::className(),
+                    'urlCreator' =>function ($action, Anketa $model, $key, $index, $column){
+                        return Url::toRoute([$action, 'id' => $model->id]);
+                    }
+                ]
+            ]
 
-                <?php $form = ActiveForm::begin(['id' => 'acketa-form']); ?>
-
-                    <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
-
-                    <?= $form->field($model, 'surname') ?>
-
-                    <?= $form->field($model, 'password')->passwordInput()?>
-
-                    <?= $form->field($model, 'phone') ?>
-
-                    <?= $form->field($model, 'email') ?>
-
-                    <div class="form-group">
-                        <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary', 'name' => 'anketa-button']) ?>
-                    </div>
-                <?php ActiveForm::end(); ?>
-            </div>
-        </div>
+        ])
+        ?>
 </div>

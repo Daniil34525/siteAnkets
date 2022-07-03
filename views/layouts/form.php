@@ -37,9 +37,8 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'Create', 'url' => ['/form/index']],
-            ['label' => 'Anketa', 'url' => ['/form/anketa']],
-            ['label' => 'Anketa2', 'url' => ['/form/anketa2']],
+            ['label' => 'Ankets', 'url' => ['/form/index']],
+            ['label' => 'Create', 'url' => ['/form/create']],
         ],
     ]);
     NavBar::end();
